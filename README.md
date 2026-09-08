@@ -1,4 +1,4 @@
-<img width="1876" height="944" alt="image" src="https://github.com/user-attachments/assets/2eee9376-ff72-448f-afd2-5ddc64d4ce1f" />
+<img width="1850" height="928" alt="image" src="https://github.com/user-attachments/assets/5a0a1138-6016-4455-8978-7299bb1e9a62" />
 
 
 # Implementation Plan: Calendo – One Photo a Day Calendar App

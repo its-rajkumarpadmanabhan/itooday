@@ -1,0 +1,25 @@
+{
+  "name": "Calendo - Visual Diary & Calendar",
+  "short_name": "Calendo",
+  "description": "Tactile visual memory journal and daily sticker calendar with photos, notes, and mood vibes.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07080B",
+  "theme_color": "#FF5E62",
+  "icons": [
+    {
+      "src": "/calendo-icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "48x48 96x96 144x144",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle", "productivity", "utilities"]
+}

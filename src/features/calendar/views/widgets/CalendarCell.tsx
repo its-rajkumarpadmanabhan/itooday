@@ -32,39 +32,37 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   const tasks = entry?.tasks || [];
   const displayTasks = tasks.slice(0, 2); // Show up to 2 micro-tasks
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleHeartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    if (clickTimerRef.current) {
-      // Double click detected ("dual time") -> Toggle favorite
-      clearTimeout(clickTimerRef.current);
-      clickTimerRef.current = null;
+    // Trigger heart burst animation
+    const willBeFavorite = !isFavorite;
+    setHeartAnim(willBeFavorite ? 'burst' : 'unburst');
+    setTimeout(() => setHeartAnim(null), 800);
 
-      // Trigger heart burst animation
-      const willBeFavorite = !isFavorite;
-      setHeartAnim(willBeFavorite ? 'burst' : 'unburst');
-      setTimeout(() => setHeartAnim(null), 800);
-
-      if (willBeFavorite) {
-        confetti({
-          particleCount: 25,
-          spread: 45,
-          origin: {
-            x: e.clientX / window.innerWidth,
-            y: e.clientY / window.innerHeight,
-          },
-          colors: ['#FF2D55', '#FF3B30', '#FF9500'],
-        });
-      }
-
-      onToggleFavorite(day);
-    } else {
-      // First click: wait for potential second click
-      clickTimerRef.current = setTimeout(() => {
-        clickTimerRef.current = null;
-        onClick(day);
-      }, 250);
+    if (willBeFavorite) {
+      confetti({
+        particleCount: 25,
+        spread: 45,
+        origin: {
+          x: e.clientX / window.innerWidth,
+          y: e.clientY / window.innerHeight,
+        },
+        colors: ['#FF2D55', '#FF3B30', '#FF9500'],
+      });
     }
+
+    onToggleFavorite(day);
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClick(day);
+  };
+
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleHeartClick(e);
   };
 
   return (
@@ -73,6 +71,7 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
         isToday ? 'is-today' : ''
       } ${isSelected ? 'active-selected' : ''} ${hasPhotoOrSticker ? 'has-image' : ''}`}
       onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
       role="button"
       tabIndex={0}
       aria-label={`Date ${day.date_key}${isFavorite ? ' (Favorited)' : ''}`}
@@ -85,7 +84,13 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
       {/* Top-Right Mood & Favorite Badges */}
       <div className="cell-indicators">
         {isFavorite && (
-          <span className="cell-favorite-badge" title="Favorited Entry">
+          <span
+            className="cell-favorite-badge"
+            title="Favorited Entry"
+            onClick={handleHeartClick}
+            role="button"
+            tabIndex={0}
+          >
             <Heart size={13} fill="#FF3B30" color="#FF3B30" />
           </span>
         )}

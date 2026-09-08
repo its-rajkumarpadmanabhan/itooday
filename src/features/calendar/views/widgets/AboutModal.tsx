@@ -233,7 +233,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
                     Install on Phone / Android APK
                   </div>
                   <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '2px', lineHeight: 1.45 }}>
-                    Install directly on your phone using the compiled <strong>calendo-app-debug.apk</strong> or tap <em>"Add to Home Screen"</em> in your mobile browser.
+                    Install directly on your phone using the compiled <strong>calendo.apk</strong> or tap <em>"Add to Home Screen"</em> in your mobile browser.
                   </div>
                 </div>
               </div>

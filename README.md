@@ -4,6 +4,7 @@ Calendo is a frictionless, tactile, local-first "one photo a day" visual diary a
 
 ---
 
+
 ## User Review Required
 
 > [!IMPORTANT]

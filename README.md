@@ -1,3 +1,5 @@
+<img width="1909" height="938" alt="image" src="https://github.com/user-attachments/assets/ef496693-d710-471a-a55d-f688b2b042be" />
+
 # Implementation Plan: Calendo – One Photo a Day Calendar App
 
 Calendo is a frictionless, tactile, local-first "one photo a day" visual diary and calendar. Built with modern web technologies (Vite + React + Lucide Icons + Tailwind-free custom CSS design system), it delivers instant gratification with zero sign-up friction, tactile interactions (slide-to-unlock, pinch/switch between month & year matrix), photo capture & editing filters, and secure IndexedDB storage.

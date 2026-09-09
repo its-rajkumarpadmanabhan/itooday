@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Plus, Heart } from 'lucide-react';
 import { CalendarDay } from '../../models/calendar_day_model';
-import confetti from 'canvas-confetti';
 
 interface CalendarCellProps {
   day: CalendarDay;
@@ -20,7 +19,6 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   const isFavorite = !!entry?.is_favorite;
 
   const [heartAnim, setHeartAnim] = useState<'burst' | 'unburst' | null>(null);
-  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const hasPhotoOrSticker = !!entry?.image_path;
   const isSticker = entry?.is_sticker_cutout ?? true;
@@ -35,22 +33,10 @@ export const CalendarCell: React.FC<CalendarCellProps> = ({
   const handleHeartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    // Trigger heart burst animation
+    // Trigger pure CSS heart burst animation
     const willBeFavorite = !isFavorite;
     setHeartAnim(willBeFavorite ? 'burst' : 'unburst');
     setTimeout(() => setHeartAnim(null), 800);
-
-    if (willBeFavorite) {
-      confetti({
-        particleCount: 25,
-        spread: 45,
-        origin: {
-          x: e.clientX / window.innerWidth,
-          y: e.clientY / window.innerHeight,
-        },
-        colors: ['#FF2D55', '#FF3B30', '#FF9500'],
-      });
-    }
 
     onToggleFavorite(day);
   };

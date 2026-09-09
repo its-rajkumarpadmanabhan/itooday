@@ -4,7 +4,6 @@ import { appDatabase } from '../../../../core/database/app_database';
 import { JournalEntry } from '../../models/entry_model';
 import { MONTH_NAMES, formatDateKey } from '../../../../core/utils/date_utils';
 import { exportMonthToPDF, exportYearToPDF, downloadBlobToDevice } from '../../../../services/pdfExporter';
-import confetti from 'canvas-confetti';
 
 interface ExportModalProps {
   currentYear: number;
@@ -73,12 +72,6 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           setPdfProgressText(status);
         });
       }
-
-      confetti({
-        particleCount: 50,
-        spread: 65,
-        origin: { y: 0.6 },
-      });
     } catch (err) {
       console.error('Failed to export PDF:', err);
       alert('Failed to generate PDF. Please try again.');
@@ -93,7 +86,6 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     const jsonStr = JSON.stringify(data, null, 2);
     const blob = new Blob([jsonStr], { type: 'application/json' });
     downloadBlobToDevice(blob, `calendo-backup-${new Date().toISOString().slice(0, 10)}.json`);
-    confetti({ particleCount: 30, spread: 45 });
   };
 
   const handleImportJSON = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,7 +97,6 @@ export const ExportModal: React.FC<ExportModalProps> = ({
       const parsed = JSON.parse(text);
       if (parsed.entries && Array.isArray(parsed.entries)) {
         await appDatabase.importDatabase(parsed.entries);
-        confetti({ particleCount: 50, spread: 60 });
         onDataChanged();
         onClose();
       } else {

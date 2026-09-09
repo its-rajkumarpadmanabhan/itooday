@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { X, Check, Palette, Sun, Moon } from 'lucide-react';
 import { THEME_PALETTES, ThemeMode, applyTheme, getSavedThemeMode } from '../../../../core/utils/theme_manager';
-import confetti from 'canvas-confetti';
 
 interface ThemePickerModalProps {
   currentTheme: string;
@@ -21,26 +20,12 @@ export const ThemePickerModal: React.FC<ThemePickerModalProps> = ({
     setSelectedColor(color);
     applyTheme(color, themeMode);
     onThemeChange(color);
-
-    confetti({
-      particleCount: 25,
-      spread: 45,
-      colors: [color, themeMode === 'light' ? '#0F172A' : '#FFFFFF'],
-      origin: { y: 0.6 },
-    });
   };
 
   const handleToggleMode = (newMode: ThemeMode) => {
     setThemeMode(newMode);
     applyTheme(selectedColor, newMode);
     onThemeChange(selectedColor);
-
-    confetti({
-      particleCount: 20,
-      spread: 40,
-      colors: [selectedColor, newMode === 'light' ? '#FFD60A' : '#6366F1'],
-      origin: { y: 0.6 },
-    });
   };
 
   const handleCustomColorInput = (e: React.ChangeEvent<HTMLInputElement>) => {

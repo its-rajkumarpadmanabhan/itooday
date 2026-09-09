@@ -7,7 +7,6 @@ import { TaskInputList } from './widgets/TaskInputList';
 import { PRESET_STICKERS, PresetSticker } from '../../../services/stickerCatalog';
 import { compressImageFile } from '../../../core/utils/image_processor';
 import { parseDateKey } from '../../../core/utils/date_utils';
-import confetti from 'canvas-confetti';
 
 interface DayDetailModalProps {
   day: CalendarDay;
@@ -117,11 +116,6 @@ export const DayDetailModal: React.FC<DayDetailModalProps> = ({
 
     try {
       await onSave(newEntry);
-      confetti({
-        particleCount: 60,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
       onClose();
     } catch (err) {
       console.error('Save failed:', err);
@@ -155,9 +149,6 @@ export const DayDetailModal: React.FC<DayDetailModalProps> = ({
               onClick={() => {
                 const nextFav = !isFavorite;
                 setIsFavorite(nextFav);
-                if (nextFav) {
-                  confetti({ particleCount: 30, spread: 50, colors: ['#FF2D55', '#FF3B30'] });
-                }
               }}
               title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
               aria-label="Toggle Favorite"

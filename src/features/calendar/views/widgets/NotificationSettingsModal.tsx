@@ -6,7 +6,6 @@ import {
   requestBrowserNotificationPermission,
   sendBrowserPushNotification,
 } from '../../../../core/utils/notification_manager';
-import confetti from 'canvas-confetti';
 
 interface NotificationSettingsModalProps {
   onClose: () => void;
@@ -35,8 +34,6 @@ export const NotificationSettingsModal: React.FC<NotificationSettingsModalProps>
         '🔔 Calendo Notifications Active',
         'You will receive anniversary & upcoming event reminders for your favorited memories!'
       );
-
-      confetti({ particleCount: 35, spread: 55 });
     } else {
       setNotificationEnabled(false);
       setEnabled(false);

@@ -28,7 +28,6 @@ import {
   checkAnniversariesForToday,
   sendBrowserPushNotification,
 } from '../../../core/utils/notification_manager';
-import confetti from 'canvas-confetti';
 
 export const CalendarScreen: React.FC = () => {
   const today = useMemo(() => new Date(), []);
@@ -83,7 +82,6 @@ export const CalendarScreen: React.FC = () => {
           `🎉 ${anniversary.yearsAgo}-Year Anniversary Alert`,
           anniversary.message
         );
-        confetti({ particleCount: 70, spread: 80 });
       } else {
         // Check if today has a special journal caption to remind the user
         const todayKey = formatDateKey(today.getFullYear(), today.getMonth() + 1, today.getDate());
@@ -237,13 +235,6 @@ export const CalendarScreen: React.FC = () => {
         '🗓️ Calendo Future Memory Locked',
         `Scheduled for ${formattedDate}: “${entry.journal_note || 'Favorite Memory'}”`
       );
-
-      confetti({
-        particleCount: 45,
-        spread: 60,
-        origin: { y: 0.2 },
-        colors: ['#FF5E62', '#FF9966', '#FFD60A'],
-      });
     }
 
     // 2. Check if the month is 100% completed with full images (day/day)
@@ -268,13 +259,6 @@ export const CalendarScreen: React.FC = () => {
         title: `🏆 Congratulations! Full Month Completed!`,
         message: `Incredible! You have documented all ${daysInTargetMonth}/${daysInTargetMonth} days in ${monthName} ${eYear} with photos & stickers!`,
         dateStr: `${monthName} ${eYear}`,
-      });
-
-      // Massive confetti shower
-      confetti({
-        particleCount: 120,
-        spread: 100,
-        origin: { y: 0.3 },
       });
     }
   };

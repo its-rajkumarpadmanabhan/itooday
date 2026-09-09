@@ -1,6 +1,5 @@
 import React from 'react';
 import { X, Sparkles, Heart, Camera, Calendar, Palette, FileText, Instagram, ShieldCheck, User, Smartphone } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { CalendoLogo } from '../../../common/components/CalendoLogo';
 
 interface AboutModalProps {
@@ -9,12 +8,6 @@ interface AboutModalProps {
 
 export const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
   const handleInstagramClick = () => {
-    confetti({
-      particleCount: 35,
-      spread: 50,
-      colors: ['#E1306C', '#F77737', '#833AB4', '#FFDC80'],
-      origin: { y: 0.6 },
-    });
     window.open('https://www.instagram.com/i.rajkumar__/', '_blank', 'noopener,noreferrer');
   };
 
